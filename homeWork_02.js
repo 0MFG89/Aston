@@ -65,12 +65,22 @@ const obj8 = {
    s: { b: { c: 1 }}
 }
 
+const obj9 = {
+   s: { id: 1 }
+}
+
+const obj10 = {
+   s: 1
+}
+
 const deepEqual = (obj1, obj2) => {
    for (let key in obj1) {
-       if (!(key in obj2)) return false;
-       if (Array.isArray(obj1[key]) && deepEqual(obj1[key], obj2[key])) continue;
-       if (obj1[key] instanceof Object && deepEqual(obj1[key], obj2[key])) continue;
-       if (obj1[key] !== obj2[key]) return false;
+      if (Array.isArray(obj1[key]) && !Array.isArray(obj2[key])
+         || obj1[key] instanceof Object && !(obj2[key] instanceof Object)) return false; 
+      if (!(key in obj2)) return false;
+      if (Array.isArray(obj1[key]) && deepEqual(obj1[key], obj2[key])) continue;
+      if (obj1[key] instanceof Object && deepEqual(obj1[key], obj2[key])) continue;
+      if (obj1[key] !== obj2[key]) return false;
    }
    
    return true;
@@ -83,6 +93,8 @@ console.log(deepEqual(obj3, obj4)); // false
 console.log(deepEqual(obj5, obj6)); // true
 
 console.log(deepEqual(obj7, obj8)); // true
+
+console.log(deepEqual(obj9, obj10)); // false
 
 //Бонус 2
 
