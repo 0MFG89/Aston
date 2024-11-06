@@ -17,6 +17,34 @@ logger.bind(o)();
 logger.call(o);
 logger.apply(o);
 
+// 3.1
+
+const nums = [1, 2, 3, 4, 5];
+console.log('sum: ', nums.reduce((s, e) => s+e, 0));
+
+const strings = ['A', 'b', 'ou', 't'];
+console.log('joined: ', strings.join(''));
+
+console.log('min', Math.min(...nums));
+console.log('max', Math.max(...nums));
+
+// 3.2
+
+const stack = [];
+stack.push(1);
+stack.push(2);
+console.log(stack);
+console.log(stack.pop());
+console.log(stack);
+
+// 3.3
+
+const queue = [];
+queue.unshift(1);
+queue.unshift(2);
+console.log(queue);
+console.log(queue.shift());
+console.log(queue);
 
 // Бонус
 
